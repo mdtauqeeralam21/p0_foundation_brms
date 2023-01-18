@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Built-By: HP
+Build-Jdk: 17.0.5
+Class-Path: lib/mysql-connector-j-8.0.31.jar lib/protobuf-java-3.19.4.ja
+ r
+Main-Class: com.revature.Application
+Created-By: Maven Integration for Eclipse
+

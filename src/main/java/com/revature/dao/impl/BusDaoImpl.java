@@ -9,15 +9,16 @@ import java.util.TreeSet;
 
 //import com.revature.config.DBConnection;
 import com.revature.config.DataBaseConnection;
-import com.revature.constants.Message;
+import com.revature.constants.Constant;
 import com.revature.dao.BusDao;
 import com.revature.exception.BusException;
 import com.revature.model.Bus;
+import com.revature.model.SeatStatus;
 
 
 public class BusDaoImpl implements BusDao {
 	  private static Connection con = DataBaseConnection.getConnection();
-	
+
 	
 //CASE==1:==================================================================================================================
 	@Override
@@ -25,30 +26,24 @@ public class BusDaoImpl implements BusDao {
         List<Bus> buses = new ArrayList<Bus>();
 		
         try {
-			
+			String selectQuery= Constant.SELECTQUERY;
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from bus ");
+			ResultSet rs = stmt.executeQuery(selectQuery);
 			
 			while(rs.next()) {	
-				String Bid = rs.getString(1);
-				String type = rs.getString(2);
-				int totalSeats = rs.getInt(3);
-				String berths = rs.getString(4);
-				
-				
 				
 				Bus bus = new Bus();
-				bus.setBusRegNo(Bid);
-				bus.setBusType(type);
-				bus.setTotalSeats(totalSeats);
-				bus.setTotalBerths(berths);
+				bus.setBusRegNo(rs.getString(1));
+				bus.setBusType(rs.getString(2));
+				bus.setTotalSeats(rs.getInt(3));
+				bus.setTotalBerths(rs.getString(4));
 				
 				buses.add(bus);
 				
 			}
 			
 			if(rs.next() == true) {
-				throw new BusException(Message.BUS_NOT_AVAILABLE);
+				throw new BusException(Constant.BUS_NOT_AVAILABLE);
 			}
 			
 		} catch (Exception e ) {
@@ -63,8 +58,8 @@ public class BusDaoImpl implements BusDao {
 	@Override
 	public void addBuses() throws Exception {
 		Scanner sc = new Scanner(System.in);
-	
-		PreparedStatement ps1= con.prepareStatement("insert into bus values (?,?,?,?,?)");
+		String insertQuery = Constant.INSERTBUSQUERY;
+		PreparedStatement ps1= con.prepareStatement(insertQuery);
 		
 		System.out.println("Enter Bus Registration Number: ");
 		String busNo = sc.nextLine();
@@ -82,7 +77,7 @@ public class BusDaoImpl implements BusDao {
 		
 		int k=ps1.executeUpdate();
 		if(k>0) {
-			System.out.println(Message.VALUES_INSERTED);
+			System.out.println(Constant.VALUES_INSERTED);
 		}
 		
 	}
@@ -96,12 +91,12 @@ public class BusDaoImpl implements BusDao {
 		Scanner sc= new Scanner(System.in);
 		System.out.println("Enter Bus Registration no to delete: ");
 		String regNo =sc.nextLine();
-
-		PreparedStatement ps1= con.prepareStatement("delete from bus where Bus_Reg_No=?");
+		String deleteQuery = Constant.DELETEBUSQUERY;
+		PreparedStatement ps1= con.prepareStatement(deleteQuery);
 		ps1.setString(1, regNo);
 		int k=ps1.executeUpdate();
 		if(k>0) {
-			System.out.println(Message.VALUES_DELETED);
+			System.out.println(Constant.VALUES_DELETED);
 		}
 			
 	}
@@ -114,9 +109,10 @@ public class BusDaoImpl implements BusDao {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Bus Registration no : ");
 		String regNum=sc.nextLine();
-		
-		PreparedStatement ps1= con.prepareStatement("select * from bus where Bus_Reg_No=?");
-		PreparedStatement ps2= con.prepareStatement("update bus set Bus_Type=?,TotalSeats=?,No_of_Berths=? where Bus_Reg_No=?");
+		String selectAbus=Constant.SELECTABUS;
+		String updateBus = Constant.UPDATEBUSVALUES;
+		PreparedStatement ps1= con.prepareStatement(selectAbus);
+		PreparedStatement ps2= con.prepareStatement(updateBus);
 		
 		ps1.setString(1,regNum);
 		ResultSet rs= ps1.executeQuery();
@@ -140,28 +136,33 @@ public class BusDaoImpl implements BusDao {
 			
 			int k=ps2.executeUpdate();
 			if(k>0) {
-				System.out.println(Message.BUS_UPDATED);
+				System.out.println(Constant.BUS_UPDATED);
 			}
 			}else {
-				System.err.println(Message.INVALID);
+				System.err.println(Constant.INVALID);
 		}	
 	}
 	
-	//case:5===================================================================================================
+//case:5===================================================================================================
 		@Override
 		public void showSeats() throws Exception {
 			Scanner sc = new Scanner(System.in);
+			try {
+			String selectQuery = Constant.SELECTSEATSTATUS;
 			System.out.println("Enter Bus Registration no : ");
 			String regNum=sc.nextLine();
 			
-			PreparedStatement ps1= con.prepareStatement("select * from seat_status where Bus_Reg_No=?");
+			PreparedStatement ps1= con.prepareStatement(selectQuery);
 			
 			ps1.setString(1,regNum);
 			ResultSet rs=ps1.executeQuery();
 			while(rs.next()) {
 				System.out.println(rs.getString(1)+", "+rs.getString(2)+", "+rs.getString(3)+", "+rs.getString(4));
-			}
 			
 		}
-
+			}catch (Exception e ) {
+				System.out.println(e.getMessage());
+			}
 }
+}
+			

@@ -17,14 +17,13 @@ import com.revature.model.SeatStatus;
 
 
 public class BusDaoImpl implements BusDao {
-	  private static Connection con = DataBaseConnection.getConnection();
-
+	  private static Connection con = DataBaseConnection.getConnection(); 
+	  
 	
 //CASE==1:==================================================================================================================
 	@Override
 	public List<Bus> showBuses() throws Exception {
         List<Bus> buses = new ArrayList<Bus>();
-		
         try {
 			String selectQuery= Constant.SELECTQUERY;
 			Statement stmt = con.createStatement();

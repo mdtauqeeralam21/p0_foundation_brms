@@ -6,31 +6,30 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DataBaseConnection {
-	 static Connection connection = null;
-	private DataBaseConnection() 
-	{
-		
-	}
+	 private static Connection connection = null;
 
 	public static Connection getConnection()
 	{
 		if (connection == null) 
 		{
 			
-			String driver= "com.mysql.cj.jdbc.Driver";
-			String url= "jdbc:mysql://localhost:3306/p0_brms";  
-			String uname= "root";
-			String pwd ="root08";
-
+			ResourceBundle rbd = ResourceBundle.getBundle("brms"); 
+			String url=rbd.getString("url");
+			String uname=rbd.getString("uname");
+			String pwd=rbd.getString("pwd");
 			try 
 			{
-				Class.forName(driver);
-				connection = DriverManager.getConnection (url, uname, pwd);
+				Class.forName(rbd.getString("driver"));
+				connection = DriverManager.getConnection (url,uname,pwd);
 			} 
-			catch (SQLException | ClassNotFoundException e) 
+			catch(ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			catch (SQLException e) 
 			{
 				e.printStackTrace(); 
-			} 		}
+			}
+			}
 		return connection;
 	}
 }
@@ -44,8 +43,16 @@ public class DataBaseConnection {
 
 
 
-//ResourceBundle resourceBundle = ResourceBundle.getBundle ("brms"); 
-//resourceBundle.getString("com.mysql.cj.jdbc.Driver");
-//resourceBundle.getString("jdbc:mysql://localhost:3306/brms1");
-//resourceBundle.getString("root");
-//resourceBundle.getString("root08");
+//ResourceBundle rbd = ResourceBundle.getBundle ("brms"); 
+//rbd.getString("com.mysql.cj.jdbc.Driver");
+//rbd.getString("jdbc:mysql://localhost:3306/brms1");
+//rbd.getString("root");
+//rbd.getString("root08");
+
+
+
+
+//String driver= "com.mysql.cj.jdbc.Driver";
+//String url= "jdbc:mysql://localhost:3306/p0_brms";  
+//String uname= "root";
+//String pwd ="root08";

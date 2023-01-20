@@ -19,7 +19,7 @@ public class Constant {
 	public static final String SEAT_STATUS = "Displaying Seat Status of Bus";
 	public static final String SELECTQUERY = "select * from bus ";
 	public static final String SELECTABUS = "select * from bus where Bus_Reg_No=?";
-	public static final String UPDATEBUSVALUES = "update bus set Bus_Type=?,TotalSeats=?,No_of_Berths=? where Bus_Reg_No=?";
+	public static final String UPDATEBUSVALUES = "update bus set Bus_Type=?,TotalSeats=?,No_of_Births=? where Bus_Reg_No=?";
 	public static final String SELECTSEATSTATUS = "select * from seat_status where Bus_Reg_No=?";
 	public static final String INSERTBUSQUERY = "insert into bus values (?,?,?,?)";
 	public static final String DELETEBUSQUERY = "delete from bus where Bus_Reg_No=?";

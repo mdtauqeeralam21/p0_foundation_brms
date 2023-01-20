@@ -87,7 +87,7 @@ public class BusDaoImpl implements BusDao {
 
 	@Override
 	public void deleteBus() throws Exception {
-		// TODO Auto-generated method stub
+
 		Scanner sc= new Scanner(System.in);
 		System.out.println("Enter Bus Registration no to delete: ");
 		String regNo =sc.nextLine();
@@ -120,13 +120,14 @@ public class BusDaoImpl implements BusDao {
 			System.out.println("Previous Bus Type: "+rs.getString(2));
 			System.out.println("Enter new Bus Type:");
 			String type =sc.nextLine();
-			System.out.println("Previous total no. of Seats: "+rs.getInt(3));
-			System.out.println("Enter new no. of Seats: ");
-			int tseats = sc.nextInt();
+		
 			System.out.println("Previous Berths Details: "+rs.getString(4));
 			System.out.println("Enter new Berths details: ");
 			String berths=sc.nextLine();
 			
+			System.out.println("Previous total no. of Seats: "+rs.getInt(3));
+			System.out.println("Enter new no. of Seats: ");
+			int tseats = sc.nextInt();
 			
 			ps2.setString(1, type);
 			ps2.setInt(2, tseats);

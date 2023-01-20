@@ -1,11 +1,11 @@
-com\revature\util\CurrencyConversion.class
 com\revature\dao\impl\BusDaoImpl.class
 com\revature\dao\BusDao.class
-com\revature\model\SeatStatus.class
 com\revature\config\DataBaseConnection.class
 com\revature\app\Main.class
-com\revature\model\Bus.class
 com\revature\exception\BusException.class
 com\revature\menu\BusMenu.class
 com\revature\util\TimeZoneConversion.class
+com\revature\util\CurrencyConversion.class
+com\revature\model\SeatStatus.class
+com\revature\model\Bus.class
 com\revature\constants\Constant.class

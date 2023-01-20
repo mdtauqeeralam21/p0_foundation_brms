@@ -11,13 +11,13 @@ import com.revature.model.Bus;
 
 public class BusMenu {
 	private static Logger logger = Logger.getLogger(BusMenu.class);
-	public void BusMenuDetails() {
+	public void busMenuDetails() {
 		try {
 			Scanner sc= new Scanner(System.in);
 			while(true) {
-				logger.info("*****************Choice*****************");
-				logger.info("1.List Buses\n2.Add Bus\n3.Delete Bus\n4.Update Bus Details\n5.Display Seat Status\n6.Exit");
-				logger.info("Enter your choice: ");
+				logger.info(Constant.CHOOSE);
+				logger.info(Constant.OPTIONS);
+				logger.info(Constant.SELECTOPTIONS);
 				int choice= Integer.parseInt(sc.next());
 				logger.info(Constant.SEPARATOR);
 				
@@ -57,7 +57,7 @@ public class BusMenu {
 					logger.info(Constant.EXIT);
 					System.exit(0);
 				default:
-						System.err.println(Constant.CHOICE);
+						logger.warn(Constant.INVALIDCHOICE);
 						logger.info(Constant.SEPARATOR);
 				}
 			

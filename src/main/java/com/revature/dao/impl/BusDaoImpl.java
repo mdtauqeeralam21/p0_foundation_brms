@@ -23,7 +23,7 @@ public class BusDaoImpl implements BusDao {
 //CASE==1:==================================================================================================================
 	@Override
 	public List<Bus> showBuses() throws Exception {
-        List<Bus> buses = new ArrayList<Bus>();
+        List<Bus> buses = new ArrayList<>();
         try {
 			String selectQuery= Constant.SELECTQUERY;
 			Statement stmt = con.createStatement();
@@ -64,10 +64,11 @@ public class BusDaoImpl implements BusDao {
 		String busNo = sc.nextLine();
 		System.out.println("Enter Bus Type AC/NAC: ");
 		String btype = sc.nextLine();
-		System.out.println("Enter total no. of Seats: ");
-		int tseats = sc.nextInt();
 		System.out.println("Enter total no. of Berths(U+L): ");
 		String berths = sc.nextLine();
+		System.out.println("Enter total no. of Seats: ");
+		int tseats = sc.nextInt();
+		
 		
 		ps1.setString(1,busNo);
 		ps1.setString(2, btype);

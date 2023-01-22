@@ -20,7 +20,7 @@ public class BusDaoImpl implements BusDao {
 	
 //CASE==1:==================================================================================================================
 	@Override
-	public List<Bus> showBuses() throws Exception {
+	public List<Bus> showBuses() {
         List<Bus> buses = new ArrayList<>();
         try {
 			String selectQuery= Constant.SELECTQUERY;
@@ -44,7 +44,7 @@ public class BusDaoImpl implements BusDao {
 			}
 			
 		} catch (Exception e ) {
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
 		}
        
 		return buses;
@@ -57,7 +57,7 @@ public class BusDaoImpl implements BusDao {
 		Scanner sc = new Scanner(System.in);
 		String insertQuery = Constant.INSERTBUSQUERY;
 		PreparedStatement ps1= con.prepareStatement(insertQuery);
-		PreparedStatement ps2= con.prepareStatement("insert into seat_status values(?,?,?,?)");
+		PreparedStatement ps2= con.prepareStatement(Constant.SEAT_INSERTION);
 		
 		System.out.println("Enter Bus Registration Number: ");
 		String busNo = sc.nextLine();
@@ -77,15 +77,15 @@ public class BusDaoImpl implements BusDao {
 		int k=ps1.executeUpdate();
 		if(k>0) {
 			System.out.println(Constant.VALUES_INSERTED);
-			System.out.println("Please insert seat details for bus"+busNo+"with berths"+berths);
+			System.out.println("Please insert seat details for bus "+busNo+" with berths "+berths);
 			
-			for(int i=0;i<=tseats;i++) {
+			for(int i=1;i<=tseats;i++) {
 				
-			System.out.println("Enter seat no.: ");
+			System.out.println("Enter seat no: "+i);
 			String seatno= sc.next();
 			System.out.println("Enter berth type (U/L): ");
 			String berthType = sc.next();
-			System.out.println("Enter seat availabilty");
+			System.out.println("Enter seat availabilty(Available/Booked): ");
 			String avail = sc.next();
 			ps2.setString(1, busNo);
 			ps2.setString(2, seatno);
@@ -94,7 +94,9 @@ public class BusDaoImpl implements BusDao {
 			
 			int j=ps2.executeUpdate();
 			if(j>0) {
-				System.out.println("Seat details updated: ");
+				System.out.println(i+" Seat details added: ");
+			}else {
+				System.err.println("Invalid Bus ID");
 			}
 			
 			
@@ -112,10 +114,17 @@ public class BusDaoImpl implements BusDao {
 		Scanner sc= new Scanner(System.in);
 		System.out.println("Enter Bus Registration no to delete: ");
 		String regNo =sc.nextLine();
+		String seatDelete=Constant.SEAT_DELETION;
 		String deleteQuery = Constant.DELETEBUSQUERY;
-		PreparedStatement ps1= con.prepareStatement(deleteQuery);
+		
+		PreparedStatement ps1= con.prepareStatement(seatDelete);
+		PreparedStatement ps2= con.prepareStatement(deleteQuery);
+		
 		ps1.setString(1, regNo);
-		int k=ps1.executeUpdate();
+		ps1.executeUpdate();
+		
+		ps2.setString(1, regNo);
+		int k=ps2.executeUpdate();
 		if(k>0) {
 			System.out.println(Constant.VALUES_DELETED);
 		}else {

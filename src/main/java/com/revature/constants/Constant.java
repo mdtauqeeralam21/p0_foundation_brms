@@ -26,5 +26,7 @@ public class Constant {
 	public static final Object CHOOSE = "*****************𝑪𝒉𝒐𝒐𝒔𝒆 𝑶𝒑𝒕𝒊𝒐𝒏*****************";
 	public static final Object OPTIONS = "𝟏.𝑳𝒊𝒔𝒕 𝑩𝒖𝒔𝒆𝒔\n𝟐.𝑨𝒅𝒅 𝑩𝒖𝒔\n𝟑.𝑫𝒆𝒍𝒆𝒕𝒆 𝑩𝒖𝒔\n𝟒.𝑼𝒑𝒅𝒂𝒕𝒆 𝑩𝒖𝒔 𝑫𝒆𝒕𝒂𝒊𝒍𝒔\n𝟓.𝑫𝒊𝒔𝒑𝒍𝒂𝒚 𝑺𝒆𝒂𝒕 𝑺𝒕𝒂𝒕𝒖𝒔\n𝟔.𝑬𝒙𝒊𝒕";
 	public static final Object SELECTOPTIONS = "𝑬𝒏𝒕𝒆𝒓 𝒚𝒐𝒖𝒓 𝒄𝒉𝒐𝒊𝒄𝒆:  ";
+	public static final String SEAT_INSERTION = "insert into seat_status values(?,?,?,?)";
+	public static final String SEAT_DELETION = "delete from seat_status where Bus_Reg_No=?";
 	
 }

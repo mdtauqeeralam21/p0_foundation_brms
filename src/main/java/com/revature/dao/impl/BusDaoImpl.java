@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
-
-//import com.revature.config.DBConnection;
 import com.revature.config.DataBaseConnection;
 import com.revature.constants.Constant;
 import com.revature.dao.BusDao;
@@ -59,6 +57,7 @@ public class BusDaoImpl implements BusDao {
 		Scanner sc = new Scanner(System.in);
 		String insertQuery = Constant.INSERTBUSQUERY;
 		PreparedStatement ps1= con.prepareStatement(insertQuery);
+		PreparedStatement ps2= con.prepareStatement("insert into seat_status values(?,?,?,?)");
 		
 		System.out.println("Enter Bus Registration Number: ");
 		String busNo = sc.nextLine();
@@ -78,6 +77,28 @@ public class BusDaoImpl implements BusDao {
 		int k=ps1.executeUpdate();
 		if(k>0) {
 			System.out.println(Constant.VALUES_INSERTED);
+			System.out.println("Please insert seat details for bus"+busNo+"with berths"+berths);
+			
+			for(int i=0;i<=tseats;i++) {
+				
+			System.out.println("Enter seat no.: ");
+			String seatno= sc.next();
+			System.out.println("Enter berth type (U/L): ");
+			String berthType = sc.next();
+			System.out.println("Enter seat availabilty");
+			String avail = sc.next();
+			ps2.setString(1, busNo);
+			ps2.setString(2, seatno);
+			ps2.setString(3,berthType);
+			ps2.setString(4, avail);
+			
+			int j=ps2.executeUpdate();
+			if(j>0) {
+				System.out.println("Seat details updated: ");
+			}
+			
+			
+			}
 		}
 		
 	}
@@ -97,7 +118,9 @@ public class BusDaoImpl implements BusDao {
 		int k=ps1.executeUpdate();
 		if(k>0) {
 			System.out.println(Constant.VALUES_DELETED);
-		}
+		}else {
+			System.err.println(Constant.INVALID);
+	}	
 			
 	}
 	
@@ -105,7 +128,6 @@ public class BusDaoImpl implements BusDao {
 
 	@Override
 	public void updateBus() throws Exception {
-		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter Bus Registration no : ");
 		String regNum=sc.nextLine();

@@ -15,11 +15,4 @@ public class DaoImplTest {
 		assertEquals(true,b1);
 		
 	}
-//	@Test
-//	public void addBusesTest() throws Exception {
-//		BusDaoImpl bd2 = new BusDaoImpl();
-//		boolean b1= bd2.addBuses() != null;
-//		assert.assertEquals(bd2, bd2);
-//	}
-
 }

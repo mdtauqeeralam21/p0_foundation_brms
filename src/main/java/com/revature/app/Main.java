@@ -1,5 +1,4 @@
 package com.revature.app;
-
 import com.revature.menu.BusMenu;
 
 public class Main {

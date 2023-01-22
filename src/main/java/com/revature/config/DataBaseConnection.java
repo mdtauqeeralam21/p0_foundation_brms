@@ -8,6 +8,9 @@ import java.util.ResourceBundle;
 public class DataBaseConnection {
 	 
 	 private static Connection connection = null;
+	 private DataBaseConnection() {
+		 
+	 }
 
 	public static Connection getConnection()
 	{
@@ -21,7 +24,7 @@ public class DataBaseConnection {
 			try 
 			{
 				Class.forName(rbd.getString("driver"));
-				connection = DriverManager.getConnection (url,uname,pwd);
+				connection = DriverManager.getConnection(url,uname,pwd);
 			} 
 			catch(ClassNotFoundException | SQLException e) {
 				e.printStackTrace();

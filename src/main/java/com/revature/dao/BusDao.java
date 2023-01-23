@@ -10,5 +10,6 @@ public interface BusDao {
 		public void deleteBus() throws Exception;
 		public void updateBus() throws Exception;
 		public void showSeats() throws Exception;
+		public void admin();
 
 }

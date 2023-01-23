@@ -10,6 +10,7 @@ import com.revature.config.DataBaseConnection;
 import com.revature.constants.Constant;
 import com.revature.dao.BusDao;
 import com.revature.exception.BusException;
+import com.revature.menu.BusMenu;
 import com.revature.model.Bus;
 import com.revature.model.SeatStatus;
 
@@ -98,8 +99,6 @@ public class BusDaoImpl implements BusDao {
 			}else {
 				System.err.println("Invalid Bus ID");
 			}
-			
-			
 			}
 		}
 		
@@ -192,9 +191,60 @@ public class BusDaoImpl implements BusDao {
 				System.out.println(rs.getString(1)+", "+rs.getString(2)+", "+rs.getString(3)+", "+rs.getString(4));
 			
 		}
-			}catch (Exception e ) {
-				System.out.println(e.getMessage());
+			}catch (SQLException e ) {
+				System.err.println(e.getMessage());
 			}
+			System.out.println("Select 'y' to book seat.");
+			String c = sc.next();
+			if(c.equalsIgnoreCase("y")) {
+			
+			System.out.println("Select seat to book: ");
+			System.out.println("Enter Seat No: ");
+			String stno = sc.next();
+			String seatQuery= "update seat_status set status='Booked' where Seat_No=?";
+			PreparedStatement ps2= con.prepareStatement(seatQuery);
+			ps2.setString(1, stno);
+			int k = ps2.executeUpdate();
+			if(k>0) {
+				System.out.println("Seat Booked Successfully.");
+			}else {
+				System.err.println("Wrong seat number.");
+			}
+			}else {
+				return;
+			}
+			
 }
+		
+		
+//=====CASE:6==================================================================================================
+
+		@Override
+		public void admin() {
+			Scanner sc = new Scanner(System.in);
+			String userid = null;
+			String password= null;
+			System.out.println("Enter userid: ");
+			userid = sc.next();
+			System.out.println("Enter password: ");
+			password= sc.next();
+			try {
+				PreparedStatement ps= con.prepareStatement("select * from admin");
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					if(userid.equals(rs.getString(1)) &&password.equals(rs.getString(2))) {
+						System.out.println(Constant.WELCOME_MESSAGE);
+						BusMenu obj= new BusMenu();
+						obj.busMenuDetails();
+					}else {
+						System.out.println("Invalid userid or password");
+					}
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+
 }
 			

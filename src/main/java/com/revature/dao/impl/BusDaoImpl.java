@@ -134,46 +134,46 @@ public class BusDaoImpl implements BusDao {
 	
 //CASE==4:==================================================================================================================
 
-	@Override
-	public void updateBus() throws Exception {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter Bus Registration no : ");
-		String regNum=sc.nextLine();
-		String selectAbus=Constant.SELECTABUS;
-		String updateBus = Constant.UPDATEBUSVALUES;
-		PreparedStatement ps1= con.prepareStatement(selectAbus);
-		PreparedStatement ps2= con.prepareStatement(updateBus);
-		
-		ps1.setString(1,regNum);
-		ResultSet rs= ps1.executeQuery();
-		if(rs.next()) {
-			System.out.println("Previous Bus Type: "+rs.getString(2));
-			System.out.println("Enter new Bus Type:");
-			String type =sc.nextLine();
-		
-			System.out.println("Previous Berths Details: "+rs.getString(4));
-			System.out.println("Enter new Berths details: ");
-			String berths=sc.nextLine();
-			
-			System.out.println("Previous total no. of Seats: "+rs.getInt(3));
-			System.out.println("Enter new no. of Seats: ");
-			int tseats = sc.nextInt();
-			
-			ps2.setString(1, type);
-			ps2.setInt(2, tseats);
-			ps2.setString(3, berths);
-			ps2.setString(4,regNum);
-			
-			
-			int k=ps2.executeUpdate();
-			if(k>0) {
-				System.out.println(Constant.BUS_UPDATED);
-			}
-			}else {
-				System.err.println(Constant.INVALID);
-		}	
-	}
-	
+//	@Override
+//	public void updateBus() throws Exception {
+//		Scanner sc = new Scanner(System.in);
+//		System.out.println("Enter Bus Registration no : ");
+//		String regNum=sc.nextLine();
+//		String selectAbus=Constant.SELECTABUS;
+//		String updateBus = Constant.UPDATEBUSVALUES;
+//		PreparedStatement ps1= con.prepareStatement(selectAbus);
+//		PreparedStatement ps2= con.prepareStatement(updateBus);
+//		
+//		ps1.setString(1,regNum);
+//		ResultSet rs= ps1.executeQuery();
+//		if(rs.next()) {
+//			System.out.println("Previous Bus Type: "+rs.getString(2));
+//			System.out.println("Enter new Bus Type:");
+//			String type =sc.nextLine();
+//		
+//			System.out.println("Previous Berths Details: "+rs.getString(4));
+//			System.out.println("Enter new Berths details: ");
+//			String berths=sc.nextLine();
+//			
+//			System.out.println("Previous total no. of Seats: "+rs.getInt(3));
+//			System.out.println("Enter new no. of Seats: ");
+//			int tseats = sc.nextInt();
+//			
+//			ps2.setString(1, type);
+//			ps2.setInt(2, tseats);
+//			ps2.setString(3, berths);
+//			ps2.setString(4,regNum);
+//			
+//			
+//			int k=ps2.executeUpdate();
+//			if(k>0) {
+//				System.out.println(Constant.BUS_UPDATED);
+//			}
+//			}else {
+//				System.err.println(Constant.INVALID);
+//		}	
+//	}
+//	
 //case:5===================================================================================================
 		@Override
 		public void showSeats() throws Exception {
@@ -221,9 +221,9 @@ public class BusDaoImpl implements BusDao {
 
 		@Override
 		public void admin() {
-			Scanner sc = new Scanner(System.in);
-			String userid = null;
+			String userid=null;
 			String password= null;
+			Scanner sc = new Scanner(System.in);
 			System.out.println("Enter userid: ");
 			userid = sc.next();
 			System.out.println("Enter password: ");

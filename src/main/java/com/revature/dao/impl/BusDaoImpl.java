@@ -69,7 +69,6 @@ public class BusDaoImpl implements BusDao {
 		System.out.println("Enter total no. of Seats: ");
 		int tseats = sc.nextInt();
 		
-		
 		ps1.setString(1,busNo);
 		ps1.setString(2, btype);
 		ps1.setInt(3, tseats);
@@ -88,10 +87,14 @@ public class BusDaoImpl implements BusDao {
 			String berthType = sc.next();
 			System.out.println("Enter seat availabilty(Available/Booked): ");
 			String avail = sc.next();
+			System.out.println("Enter PNR No (NULL if not assigned) ");
+			String pnrNo =sc.next();
+			
 			ps2.setString(1, busNo);
 			ps2.setString(2, seatno);
 			ps2.setString(3,berthType);
 			ps2.setString(4, avail);
+			ps2.setString(5, pnrNo);
 			
 			int j=ps2.executeUpdate();
 			if(j>0) {
@@ -188,7 +191,7 @@ public class BusDaoImpl implements BusDao {
 			ps1.setString(1,regNum);
 			ResultSet rs=ps1.executeQuery();
 			while(rs.next()) {
-				System.out.println(rs.getString(1)+", "+rs.getString(2)+", "+rs.getString(3)+", "+rs.getString(4));
+				System.out.println(rs.getString(1)+", "+rs.getString(2)+", "+rs.getString(3)+", "+rs.getString(4)+", "+rs.getString(5));
 			
 		}
 			}catch (SQLException e ) {

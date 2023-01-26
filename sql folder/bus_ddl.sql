@@ -12,5 +12,8 @@ Bus_Reg_No varchar(10),
 Seat_No varchar(10),
 Berth varchar(10),
 Status varchar(20),
+PNR_No varchar(20),
  foreign key(Bus_Reg_No) REFERENCES bus(Bus_Reg_No));
+ use p0_brms;
+ create table admin(user_id varchar(20) unique not null, password varchar(20) not null);
 

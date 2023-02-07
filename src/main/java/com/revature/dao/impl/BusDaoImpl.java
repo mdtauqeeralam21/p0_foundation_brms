@@ -214,6 +214,7 @@ public class BusDaoImpl implements BusDao {
 				System.err.println("Wrong seat number.");
 			}
 			}else {
+				System.out.println("No seat selected...");
 				return;
 			}
 			

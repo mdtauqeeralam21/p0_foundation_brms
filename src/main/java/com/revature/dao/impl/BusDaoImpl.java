@@ -4,15 +4,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
 import com.revature.config.DataBaseConnection;
 import com.revature.constants.Constant;
 import com.revature.dao.BusDao;
 import com.revature.exception.BusException;
 import com.revature.menu.BusMenu;
 import com.revature.model.Bus;
-import com.revature.model.SeatStatus;
 
 
 public class BusDaoImpl implements BusDao {

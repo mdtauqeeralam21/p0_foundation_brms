@@ -3,9 +3,9 @@ package com.revature.menu;
 import java.util.List;
 import java.util.Scanner;
 
-import org.apache.log4j.Logger;
-
 //import org.apache.log4j.Logger;
+
+import org.apache.log4j.Logger;
 import com.revature.constants.Constant;
 import com.revature.dao.impl.BusDaoImpl;
 import com.revature.model.Bus;

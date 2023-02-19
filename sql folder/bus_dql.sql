@@ -1,5 +1,4 @@
-SELECT * FROM bus;
-SELECT * FROM seat_status;
-SELECT * FROM seat_status WHERE Bus_Reg_No="CD-9898";
-DELETE FROM seat_status where Bus_Reg_No="CD-9898";
-DELETE FROM bus where Bus_Reg_No="CD-9898";
+use p0_brms;
+SELECT * FROM admin;
+select* from bus;
+
